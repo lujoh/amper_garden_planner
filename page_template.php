@@ -18,7 +18,7 @@
                 <h2 class="page_name">
                     Template
                 </h2>
-                <p>
+                <p class="subheader">
                     
                 </p>
                 <?php
