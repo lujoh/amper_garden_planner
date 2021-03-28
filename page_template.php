@@ -16,8 +16,11 @@
             ?>
             <main>
                 <h2 class="page_name">
-                    
+                    Template
                 </h2>
+                <p>
+                    
+                </p>
                 <?php
                 /*Insert plant selection aside*/
                 require_once 'plant_selection.php';

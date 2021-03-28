@@ -5,7 +5,7 @@
     </div>
     <nav>
         <ul>
-            <li><a href="">Location Selection</a></li>
+            <li><a href="location.php">Location Selection</a></li>
             <li><a href="">Planting Guide &amp; Calendar</a></li>
             <li><a href="">Watering Guide</a></li>
             <li><a href="">Plant Care</a></li>
