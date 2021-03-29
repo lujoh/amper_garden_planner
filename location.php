@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Location Selection</title>
+        <title>Location Selection - Amper Garden Planner</title>
         <?php
         /*insert html head info that is standard for all pages*/
         require_once 'html_head_info.php';
@@ -27,7 +27,7 @@
                 ?>
                 
 <!--                This is where the main content of the page starts-->
-                <section>
+                <div>
                     <article class="plant_info location">
                         <h3>Nasturtium</h3>
                         <h4>Soil Requirements:</h4>
@@ -82,7 +82,7 @@
                             <li>Lorem ipsum dolor</li>
                         </ul>
                     </article>
-                </section>
+                </div>
                 
             </main>
             <?php

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Watering Guide</title>
+        <title>Watering Guide - Amper Garden Planner</title>
         <?php
         /*insert html head info that is standard for all pages*/
         require_once 'html_head_info.php';
@@ -27,7 +27,7 @@
                 ?>
                 
 <!--                This is where the main content of the page starts-->
-                <section>
+                <div>
                     <article class="plant_info watering">
                         <h3>Watering new seedlings</h3>
                         <h4>Nasturtium</h4>
@@ -62,7 +62,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
                     </article>
-                </section>
+                </div>
                 
             </main>
             <?php

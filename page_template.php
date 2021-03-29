@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Page Template</title>
+        <title>Page Template - Amper Garden Planner</title>
         <?php
         /*insert html head info that is standard for all pages*/
         require_once 'html_head_info.php';
