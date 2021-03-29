@@ -1,9 +1,9 @@
 <aside class="plant_selection">
     <header>
         <h3>Choose your plants</h3>
-        <button>Hide plant selection</button>
+        <button class="hide_button">Hide plant selection</button>
     </header>
-    <section>
+    <section class="hidden_area visible" id="selection_hidden">
         <div>
             <h3>Selected plants:</h3>
             <ul>
