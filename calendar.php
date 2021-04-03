@@ -12,7 +12,7 @@
         <div class="container">
             <?php
             /*Insert header*/
-            require_once 'header.php';
+            require_once 'page_components/header.php';
             ?>
             <main>
                 <h2 class="page_name">
@@ -23,7 +23,7 @@
                 </p>
                 <?php
                 /*Insert plant selection aside*/
-                require_once 'plant_selection.php';
+                require_once 'page_components/plant_selection.php';
                 ?>
                 
 <!--                This is where the main content of the page starts-->
@@ -75,7 +75,7 @@
             </main>
             <?php
             /*Insert footer*/
-            require_once 'footer.php';
+            require_once 'page_components/footer.php';
             ?>
         </div><!--closing tag container-->
     </body>
