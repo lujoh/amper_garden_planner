@@ -51,8 +51,8 @@
                         </div>
                         <div class="plant_name_calendar">
                             <h3>Nasturtium</h3>
-                            <button class="hide_button">Show planting instructions</button>
-                            <div class="hidden_area hidden" id="nasturtium_hidden">
+                            <button class="hide_button" aria-expanded="false" onclick="toggle_visibility(this, 'nasturtium_hidden', 'Hide planting instructions', 'Show planting instructions')">Show planting instructions</button>
+                            <div class="hidden" id="nasturtium_hidden">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 </p>
@@ -65,8 +65,8 @@
                         </div>
                         <div class="plant_name_calendar">
                             <h3>Basil</h3>
-                            <button class="hide_button">Show planting instructions</button>
-                            <div class="hidden_area hidden" id="basil_hidden">
+                            <button class="hide_button" aria-expanded="false" onclick="toggle_visibility(this, 'basil_hidden', 'Hide planting instructions', 'Show planting instructions')">Show planting instructions</button>
+                            <div class="hidden" id="basil_hidden">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 </p>
@@ -81,5 +81,6 @@
             require_once 'page_components/footer.php';
             ?>
         </div><!--closing tag container-->
+    <script src="script/js.js"></script>
     </body>
 </html>

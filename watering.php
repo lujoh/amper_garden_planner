@@ -70,5 +70,5 @@
             require_once 'page_components/footer.php';
             ?>
         </div><!--closing tag container-->
-    </body>
+    <script src="script/js.js"></script></body>
 </html>

@@ -1,6 +1,6 @@
 <aside class="plant_selection">
     <header>
-        <button class="hide_button">Hide plant selection</button>
+        <button class="hide_button" aria-expanded="true" onclick="toggle_visibility(this, 'selection_hidden', 'Hide plant selection', 'Show plant selection')">Hide plant selection</button>
         <h2>Choose your plants</h2>
     </header>
     <section class="hidden_area visible" id="selection_hidden">
