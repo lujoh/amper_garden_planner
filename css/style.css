@@ -95,6 +95,11 @@ input, select{
     padding:0.3em;
     margin:0.3em;
 }
+img{
+    width:98%;
+    margin:0.5em auto;
+    display:block;
+}
 /*plant selection area styles*/
 .plant_selection{
     background-color:#fbe8fc;
@@ -129,6 +134,7 @@ footer a{
 .plant_row{
     display:flex;
     padding:0;
+    
 }
 .plant_date{
     background-color:#223b12;
@@ -139,7 +145,6 @@ footer a{
 }
 .plant_name_calendar{
     padding:0.6em;
-    width:75%;
 }
 
 /*styles for larger screens*/
@@ -149,6 +154,21 @@ footer a{
         flex-direction:row-reverse;
         justify-content:space-between;
         align-items:flex-start;
+    }
+}
+@media (min-width:650px){
+    .flex_row{
+        display:flex;
+        flex-direction:row-reverse;
+        padding:0 0 0.5em;
+    }
+    img{
+        margin:0 0.3em;
+        max-width:600px;
+    }
+    .float_img{
+        float:right;
+        max-width:400px;
     }
 }
 @media (min-width:830px){

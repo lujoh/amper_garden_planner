@@ -53,6 +53,7 @@
                             <h3>Nasturtium</h3>
                             <button class="hide_button" aria-expanded="false" onclick="toggle_visibility(this, 'nasturtium_hidden', 'Hide planting instructions', 'Show planting instructions')">Show planting instructions</button>
                             <div class="hidden" id="nasturtium_hidden">
+                                <img src="images/nasturtium_seeds.jpg" alt="Nasturtium seeds are about pea sized, light brown and are textured kind of like a brain." class="float_img">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 </p>
@@ -67,6 +68,7 @@
                             <h3>Basil</h3>
                             <button class="hide_button" aria-expanded="false" onclick="toggle_visibility(this, 'basil_hidden', 'Hide planting instructions', 'Show planting instructions')">Show planting instructions</button>
                             <div class="hidden" id="basil_hidden">
+                                <img src="images/basil_seeds.jpg" alt="Basil seeds are small, oval shaped and black, a little bit smaller than sesame seeds" class="float_img">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 </p>
