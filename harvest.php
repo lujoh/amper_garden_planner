@@ -15,9 +15,9 @@
             require_once 'page_components/header.php';
             ?>
             <main>
-                <h2 class="page_name">
+                <h1 class="page_name">
                     Your personal harvesting guide
-                </h2>
+                </h1>
                 <p class="subheader">
                     Time to reap what you sowed.
                 </p>
@@ -28,23 +28,23 @@
                 
 <!--                This is where the main content of the page starts-->
                 <article class="plant_info harvest">
-                    <h3>Nasturtium</h3>
-                    <h4>Is it ready to harvest?</h4>
+                    <h2>Nasturtium</h2>
+                    <h3>Is it ready to harvest?</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
-                    <h4>How to harvest?</h4>
+                    <h3>How to harvest?</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                 </article>
                 <article class="plant_info harvest">
-                    <h3>Basil</h3>
-                    <h4>Is it ready to harvest?</h4>
+                    <h2>Basil</h2>
+                    <h3>Is it ready to harvest?</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
-                    <h4>How to harvest?</h4>
+                    <h3>How to harvest?</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>

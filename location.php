@@ -15,9 +15,9 @@
             require_once 'page_components/header.php';
             ?>
             <main>
-                <h2 class="page_name">
+                <h1 class="page_name">
                     Your personal plant location guide
-                </h2>
+                </h1>
                 <p class="subheader">
                     Plan your plot.
                 </p>
@@ -29,26 +29,26 @@
 <!--                This is where the main content of the page starts-->
                 <div>
                     <article class="plant_info location">
-                        <h3>Nasturtium</h3>
-                        <h4>Soil Requirements:</h4>
+                        <h2>Nasturtium</h2>
+                        <h3>Soil Requirements:</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Shade Requirements:</h4>
+                        <h3>Shade Requirements:</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Spacing:</h4>
+                        <h3>Spacing:</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Plant near:</h4>
+                        <h3>Plant near:</h3>
                         <ul>
                             <li>Lorem ipsum dolor</li>
                             <li>Lorem ipsum dolor</li>
                             <li>Lorem ipsum dolor</li>
                         </ul>
-                        <h4>Plant away from:</h4>
+                        <h3>Plant away from:</h3>
                         <ul>
                             <li>Lorem ipsum dolor</li>
                             <li>Lorem ipsum dolor</li>
@@ -56,26 +56,26 @@
                         </ul>
                     </article>
                     <article class="plant_info location">
-                        <h3>Basil</h3>
-                        <h4>Soil Requirements:</h4>
+                        <h2>Basil</h2>
+                        <h3>Soil Requirements:</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Shade Requirements:</h4>
+                        <h3>Shade Requirements:</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Spacing:</h4>
+                        <h3>Spacing:</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Plant near:</h4>
+                        <h3>Plant near:</h3>
                         <ul>
                             <li>Lorem ipsum dolor</li>
                             <li>Lorem ipsum dolor</li>
                             <li>Lorem ipsum dolor</li>
                         </ul>
-                        <h4>Plant away from:</h4>
+                        <h3>Plant away from:</h3>
                         <ul>
                             <li>Lorem ipsum dolor</li>
                             <li>Lorem ipsum dolor</li>

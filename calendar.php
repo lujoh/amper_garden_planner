@@ -15,9 +15,9 @@
             require_once 'page_components/header.php';
             ?>
             <main>
-                <h2 class="page_name">
+                <h1 class="page_name">
                     Your personal planting guide &amp; calendar
-                </h2>
+                </h1>
                 <p class="subheader">
                     Find the best thyme to plant your plants.
                 </p>
@@ -31,23 +31,26 @@
                     <p>
                         Enter the average first and last frost dates for your region to get a personalized calendar for your selected plants.
                     </p>
-                    <div>
-                        <label for="first_frost">First frost date</label>
-                        <input type="date" name="first_frost" id="first_frost">
-                    </div>
-                    <div>
-                        <label for="last_frost">Last frost date</label>
-                        <input type="date" name="last_frost" id="last_frost">
-                    </div>
+                    <form name="frost_date_selection">
+                        <div>
+                            <label for="first_frost">First frost date:</label>
+                            <input type="date" name="first_frost" id="first_frost">
+                        </div>
+                        <div>
+                            <label for="last_frost">Last frost date:</label>
+                            <input type="date" name="last_frost" id="last_frost">
+                        </div>
+                        <input type="submit" value="Submit frost dates">
+                    </form>
                 </section>
                 <section class="plant_info calendar">
-                    <h3>Planting calendar</h3>
+                    <h2>Planting calendar</h2>
                     <article class="plant_row">
                         <div class="plant_date">
                             May 14th - May 21st
                         </div>
                         <div class="plant_name_calendar">
-                            <h4>Nasturtium</h4>
+                            <h3>Nasturtium</h3>
                             <button class="hide_button">Show planting instructions</button>
                             <div class="hidden_area hidden" id="nasturtium_hidden">
                                 <p>
@@ -61,7 +64,7 @@
                             May 24th - June 5th
                         </div>
                         <div class="plant_name_calendar">
-                            <h4>Basil</h4>
+                            <h3>Basil</h3>
                             <button class="hide_button">Show planting instructions</button>
                             <div class="hidden_area hidden" id="basil_hidden">
                                 <p>

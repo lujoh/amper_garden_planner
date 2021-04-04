@@ -1,0 +1,175 @@
+/*General style initialization*/
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Helvetica, Verdana, Arial, sans-serif;
+}
+/*Styles for smaller devices*/
+/*full body styles*/
+.container{
+    width:100%;
+}
+/*header + navigation styles*/
+.title{
+    width:100%;
+    background-color:#223b12;
+}
+.title img{
+    width:80%;
+    margin:0 auto;
+    display:block;
+    max-height:180px;
+}
+nav{
+    color:#17270c;
+}
+nav ul{
+    list-style-type:none;
+    background-color:#7dc748;
+}
+nav li a{
+    text-decoration:none;
+    display:block;
+    padding:1em;
+    color:#17270c;
+    font-weight:bold;
+}
+nav li a:hover{
+    color:#e3f3d8;
+    background-color:#17270c;
+}
+nav ul li{
+    width:100%;
+    border-bottom: 1px solid #17270c;
+    border-collapse:collapse;
+}
+.menu_button{
+    padding:3px 8px;
+    border: 2px solid #17270c;
+    background-color:#7dc748;
+    font-size:3em;
+    font-weight:900;
+    margin-top:0.3em;
+}
+/*main body styles for all pages*/
+main{
+    padding:1em 0.5em;
+}
+.page_name{
+    color:#6c0d73;
+}
+.subheader{
+    color:#6c0d73;
+    font-style:italic;
+}
+.page_name h1{
+    font-family:Impact, "Arial Black", sans-serif;
+}
+ul:not(nav ul){
+    margin-left:0;
+    padding-left:4%;
+}
+h2, h3, h4, h5{
+    padding:0.8em 0em 0.4em;
+    color:#223b12;
+}
+button, input[type='submit']{
+    background-color:#7dc748;
+    color:#17270c;
+    padding:0.8em;
+    border: 1px solid #17270c;
+    border-radius:10px;
+    font-weight:bold;
+}
+button:hover, input[type='submit']:hover{
+    cursor:pointer;
+}
+main article{
+    background-color:#e3f3d8;
+    border: 2px solid #223b12;
+    margin:1em 0;
+    padding:0.5em;
+}
+input, select{
+    padding:0.3em;
+    margin:0.3em;
+}
+/*plant selection area styles*/
+.plant_selection{
+    background-color:#fbe8fc;
+    padding:1em 0.5em;
+    border: 2px solid #410845;
+    margin:1em 0;
+}
+/*footer styles*/
+footer{
+    padding:1em 0.5em;
+    background-color:#17270c;
+    color:#e3f3d8;
+}
+footer h4{
+    color:#e3f3d8;
+}
+footer a{
+    color:#7dc748;
+}
+/*items that can be hidden*/
+/*
+.hidden{
+    display:none;
+}
+.visible{
+    display:block;
+}*/
+
+/*Styles for specific pages*/
+
+/*Calendar page styles*/
+.plant_row{
+    display:flex;
+    padding:0;
+}
+.plant_date{
+    background-color:#223b12;
+    color:#e3f3d8;
+    min-width:100px;
+    max-width:170px;
+    padding:0.6em;
+}
+.plant_name_calendar{
+    padding:0.6em;
+    width:75%;
+}
+
+/*styles for larger screens*/
+@media (min-width:460px){
+    .plant_selection header{
+        display:flex;
+        flex-direction:row-reverse;
+        justify-content:space-between;
+        align-items:flex-start;
+    }
+}
+@media (min-width:830px){
+    #hidden_nav{
+        display:flex;
+    }
+    nav ul li{
+        border-right: 1px solid #17270c;
+    }
+    .menu_button{
+        display:none;
+    }
+    .frost_dates{
+        padding-right:2em;
+    }
+    .frost_dates form{
+        display:flex;
+        justify-content:space-between;
+    }
+    .container{
+        max-width:1100px;
+        margin:auto;
+    }
+}

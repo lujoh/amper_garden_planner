@@ -15,9 +15,9 @@
             require_once 'page_components/header.php';
             ?>
             <main>
-                <h2 class="page_name">
+                <h1 class="page_name">
                     Template
-                </h2>
+                </h1>
                 <p class="subheader">
                     
                 </p>

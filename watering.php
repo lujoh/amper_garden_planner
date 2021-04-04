@@ -15,9 +15,9 @@
             require_once 'page_components/header.php';
             ?>
             <main>
-                <h2 class="page_name">
+                <h1 class="page_name">
                     Your personal watering guide
-                </h2>
+                </h1>
                 <p class="subheader">
                     Wet your plants properly.
                 </p>
@@ -29,29 +29,29 @@
 <!--                This is where the main content of the page starts-->
                 <div>
                     <article class="plant_info watering">
-                        <h3>Watering new seedlings</h3>
-                        <h4>Nasturtium</h4>
+                        <h2>Watering new seedlings</h2>
+                        <h3>Nasturtium</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <h4>Basil</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </article>
-                    <article class="plant_info watering">
-                        <h3>Watering older plants</h3>
-                        <h4>Nasturtium</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h4>Basil</h4>
+                        <h3>Basil</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
                     </article>
                     <article class="plant_info watering">
-                        <h3>General watering tips</h3>
+                        <h2>Watering older plants</h2>
+                        <h3>Nasturtium</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <h3>Basil</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </article>
+                    <article class="plant_info watering">
+                        <h2>General watering tips</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
