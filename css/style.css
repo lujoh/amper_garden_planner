@@ -174,9 +174,13 @@ footer a{
 @media (min-width:830px){
     #hidden_nav{
         display:flex;
+        align-items:stretch;
     }
     nav ul li{
         border-right: 1px solid #17270c;
+    }
+    #hidden_nav a{
+        height:100%;
     }
     .menu_button{
         display:none;
