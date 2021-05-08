@@ -4,7 +4,7 @@
         <title>Location Selection - Amper Garden Planner</title>
         <?php
         /*insert html head info that is standard for all pages*/
-        require_once 'html_head_info.php';
+        require_once 'page_components/html_head_info.php';
         ?>
         <meta name="description" content="Your personal guide for chosing the right location for your plants.">
     </head>
