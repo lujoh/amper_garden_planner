@@ -3,7 +3,7 @@
 /* In this file we will check to see if the plant selection has been submitted and save the selection as a cookie*/
 
     // Here we insert the file where the plant selection query happens
-include 'plant_selection_query.php';
+include 'queries/plant_selection_query.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$selection_error){
     while($row = $selection_result->fetch_assoc()){
