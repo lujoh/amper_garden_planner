@@ -1,3 +1,6 @@
+<?php
+include 'page_components/plant_selection_cookie.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
