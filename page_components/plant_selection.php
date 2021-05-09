@@ -10,8 +10,11 @@
             <h3>Selected plants:</h3>
 <!--            Here we will go over all the plants in your_plants and create a list item to show that it has been selected-->
             <ul>
-                <li>Nasturtium</li>
-                <li>Basil</li>
+                <?php
+                foreach ($your_plants->plant_array as $plant) {
+                    echo "<li>" . $plant . "</li>";
+                }
+                ?>
             </ul>
         </div>
         <div>
