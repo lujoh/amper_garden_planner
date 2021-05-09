@@ -4,6 +4,7 @@
 
     // Here we insert the file where the plant selection query happens
 include 'queries/plant_selection_query.php';
+require_once 'queries/query_class.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$selection_error){
     while($row = $selection_result->fetch_assoc()){
@@ -18,6 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$se
 }
 /*Check to see if cookie is set and decode to use the value on rest of site*/
 if (isset($_COOKIE['plants'])) {
-    $your_plants = json_decode($_COOKIE['plants']);
+    $your_plants = new Plant_Selection();
 }
 ?>
