@@ -11,8 +11,12 @@
 <!--            Here we will go over all the plants in your_plants and create a list item to show that it has been selected-->
             <ul>
                 <?php
-                foreach ($your_plants->plant_array as $plant) {
-                    echo "<li>" . $plant . "</li>";
+                if (isset($your_plants)){
+                    foreach ($your_plants->plant_array as $plant) {
+                        echo "<li>" . $plant . "</li>";
+                    }
+                } else {
+                    echo "<li>Please select some plants below.</li>";
                 }
                 ?>
             </ul>
