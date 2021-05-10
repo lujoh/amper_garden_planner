@@ -8,7 +8,7 @@ class Plant_Selection {
     
     //method to create plant selection object
     function __construct(){
-        $this->plant_array = json_decode($_COOKIE['plants']);
+        $this->plant_array = json_decode($_COOKIE['plants'], true);
     }
     
     //method to get the placeholders for queries

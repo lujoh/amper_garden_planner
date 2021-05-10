@@ -32,14 +32,14 @@
                     while($row = $selection_result->fetch_assoc()){
                         //checks if the item was previously selected
                         $checked_status = "";
-                        if (isset($your_plants[$row['p.plant_id']])){
+                        if (isset($your_plants->plant_array[$row['plant_id']])){
                             $checked_status = "checked";
                         }
 
                         //create checkboxes
-                        echo "<input type='checkbox' name='" . $row['p.plant_id'] . "' id='" . $row['p.plant_id'] . "' value='" . $row['p.plant_id'] . "' " . $checked_status . ">";
+                        echo "<input type='checkbox' name='" . $row['plant_id'] . "' id='" . $row['plant_id'] . "' value='" . $row['plant_id'] . "' " . $checked_status . ">";
                         //create label
-                        echo "<label for='" . $row['p.plant_id'] . "'>" . $row['p.plant_name'] . "</label><br>";
+                        echo "<label for='" . $row['plant_id'] . "'>" . $row['plant_name'] . "</label><br>";
                     }
                 }
                 ?>

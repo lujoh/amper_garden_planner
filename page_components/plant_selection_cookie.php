@@ -9,8 +9,8 @@ require_once 'queries/query_class.php';
 if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$selection_error){
     while($row = $selection_result->fetch_assoc()){
         /*Check to see if each plant id from the query is set and add it to the plants variable*/
-        if (isset($_GET[$row['p.plant_id']]) && is_numeric($_GET[$row['p.plant_id']])){
-            $your_plants[$row['p.plant_id']] = $row['p.plant_name'];
+        if (isset($_GET[$row['plant_id']]) && is_numeric($_GET[$row['plant_id']])){
+            $your_plants[$row['plant_id']] = $row['plant_name'];
         }
         /*encode array to store it in cookie. Cookie set to expire in about 2 months*/
         $cookie_plants = json_encode($your_plants);

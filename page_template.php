@@ -26,6 +26,7 @@ include 'page_components/plant_selection_cookie.php';
                 </p>
                 <?php
                 /*Insert plant selection aside*/
+//                require_once 'background_notes/table_creation.php';
                 require_once 'page_components/plant_selection.php';
                 ?>
                 
