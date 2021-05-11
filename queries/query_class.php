@@ -103,6 +103,7 @@ class Content_Query extends Base_Query {
     protected $existing_query_type;
     protected $image_object;
     protected $images;
+    protected $section_variable;
     
     //method to create query for the watering page
     protected function get_watering(){
@@ -114,24 +115,29 @@ class Content_Query extends Base_Query {
         $this->send_query();
     }
     
-    //method to print the results of the watering query on the page in the seedling section
-    public function print_watering_seedlings(){
+    //method to print the results of the watering query on the page in both the seedling section and adult section
+    public function print_watering($section){
         if (!$this->existing_query_type == "watering" || $this->query_error) {
             $this->get_watering();
         }
         $this->statement->bind_result($plant_id, $plant_name, $watering_baby, $watering_adult);
         $this->image_object = new Image_Query();
-        $this->images = $this->image_object->get_images('seedling');
+        $this->images = $this->image_object->get_images($section);
         if (!$this->statement){
             die("Please select plants to see information.");
         }
         while($this->statement->fetch()){
+            if ($section == 'seedling'){
+                $this->section_variable = $watering_baby;
+            } else {
+                $this->section_variable = $watering_adult;
+            }
             echo "<h3>" . $plant_name . "</h3>";
             echo "<div class='flex_row'> ";
             if (isset($this->images[$plant_id])){
                 echo $this->images[$plant_id];
             }
-            echo "<p>" . $watering_baby . "</p></div>";
+            echo "<p>" . $this->section_variable . "</p></div>";
         }
     }
 }

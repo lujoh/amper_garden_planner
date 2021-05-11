@@ -34,27 +34,20 @@ include 'page_components/plant_selection_cookie.php';
                     <article class="plant_info watering">
                         <h2>Watering new seedlings</h2>
                         <?php
-                        require_once '../pwd.php';
+//                        require_once '../pwd.php';
                         $watering_text = new Content_Query();
-                        $watering_text->print_watering_seedlings();
+                        $watering_text->print_watering('seedling');
                         ?>
                         
                     </article>
                     <article class="plant_info watering">
                         <h2>Watering older plants</h2>
-                        <h3>Nasturtium</h3>
-                        <div class="flex_row">
-                            <img src="images/nasturtium_older.jpg" alt="Older nasturtium plants have larger round-ish leaves that are green, sometimes with some white spaces. Leaves grow out from one central stem. Flowers are often orange, red or pink.">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                        </div>
-                        <h3>Basil</h3>
-                        <div class="flex_row">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                        </div>
+                        <?php
+//                        require_once '../pwd.php';
+                        $watering_text = new Content_Query();
+                        $watering_text->print_watering('adult');
+                        ?>
+
                     </article>
                     <article class="plant_info watering">
                         <h2>General watering tips</h2>
