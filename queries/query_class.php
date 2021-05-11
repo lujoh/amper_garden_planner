@@ -27,3 +27,39 @@ class Plant_Selection {
         return implode(", ", array_keys($this->plant_array));
     }
 }
+
+require_once '../pwd.php';
+
+class Content_Query {
+    private $sql;
+    private $conn;
+    private $statement;
+    public $query_error = false;
+    public $plants;
+    public $result;
+    
+    //method to construct a new query
+    function __construct(){
+        $this->plants = new Plant_Selection();
+    }
+    
+    //method that prepares and sends query
+    private function send_query(){
+        $this->conn = new mysqli($servername, $username, $password, $db);
+        //check for error
+        if ($this->conn->connect_error) {
+            $this->query_error = true;
+        }
+        //prepare the statement for the query
+        $this->statement = $this->conn->prepare($this->sql);
+        //bind the parameters using methods from the Plant_Selection class
+        $this->statement->bind_param($this->plants->parameter_types(), $this->plants->get_parameters());
+        //check for errors
+        if(!$statement->execute()) {
+            $query_error = true;
+        }
+        //close connection
+        $this->conn->close();
+        
+    }
+}
