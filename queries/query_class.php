@@ -28,17 +28,15 @@ class Plant_Selection {
     }
 }
 
-
-class Content_Query {
-    private $sql;
-    private $conn;
-    private $statement;
+//General Query class that uses prepared statements that can be used in content and image queries
+class Base_Query {
+    protected $sql;
+    protected $conn;
+    protected $statement;
     public $query_error = false;
     public $plants;
-    public $result;
-    private $existing_query_type;
-    private $parameter_types;
-    private $parameters;
+    protected $parameter_types;
+    protected $parameters;
     
     //method to construct a new query
     function __construct(){
@@ -48,7 +46,7 @@ class Content_Query {
     }
     
     //method that prepares and sends query
-    private function send_query(){
+    protected function send_query(){
         
         $this->conn = new mysqli(SERVERNAME, USERNAME, PASSWORD, DB);
         //check for error
@@ -72,10 +70,44 @@ class Content_Query {
         //close connection
         $this->conn->close();
     }
+}
+
+//class that is used to get images for the page
+class Image_Query extends Base_Query {
+    protected $image_array;
+    
+    //method to get images for any query
+    public function get_images($section){
+        $this->sql = "
+        SELECT images.plant_id, image_url, alt
+        FROM plants, images
+        WHERE images.plant_id IN (" . $this->plants->prepare_placeholders(). ")
+        AND image_section = '" . $section ."'
+        AND images.plant_id = plants.plant_id;";
+        $this->send_query();
+        
+        //bind and format the query results in a loop
+        $this->statement->bind_result($plant_id, $image_url, $alt);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            $this->image_array[$plant_id] = "<img src='images/" . $image_url . "' alt='" . $alt . "'>";
+        }
+        return $this->image_array;
+    }
+}
+
+//class that is used to get content for the page
+class Content_Query extends Base_Query {
+    protected $existing_query_type;
+    protected $image_object;
+    protected $images;
     
     //method to create query for the watering page
-    private function get_watering(){
-        $this->sql = "SELECT plant_name, watering_baby, watering_adult
+    protected function get_watering(){
+        $this->sql = "
+        SELECT plant_id, plant_name, watering_baby, watering_adult
         FROM plants
         WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
         $this->existing_query_type = "watering";
@@ -87,13 +119,19 @@ class Content_Query {
         if (!$this->existing_query_type == "watering" || $this->query_error) {
             $this->get_watering();
         }
-        $this->statement->bind_result($plant_name, $watering_baby, $watering_adult);
+        $this->statement->bind_result($plant_id, $plant_name, $watering_baby, $watering_adult);
+        $this->image_object = new Image_Query();
+        $this->images = $this->image_object->get_images('seedling');
         if (!$this->statement){
             die("Please select plants to see information.");
         }
         while($this->statement->fetch()){
             echo "<h3>" . $plant_name . "</h3>";
-            echo "<div class='flex_row'> <p>" . $watering_baby . "</p></div>";
+            echo "<div class='flex_row'> ";
+            if (isset($this->images[$plant_id])){
+                echo $this->images[$plant_id];
+            }
+            echo "<p>" . $watering_baby . "</p></div>";
         }
     }
 }
