@@ -28,7 +28,6 @@ class Plant_Selection {
     }
 }
 
-require_once '../pwd.php';
 
 class Content_Query {
     private $sql;
@@ -37,29 +36,64 @@ class Content_Query {
     public $query_error = false;
     public $plants;
     public $result;
+    private $existing_query_type;
+    private $parameter_types;
+    private $parameters;
     
     //method to construct a new query
     function __construct(){
         $this->plants = new Plant_Selection();
+        $this->parameter_types = $this->plants->parameter_types();
+        $this->parameters = $this->plants->get_parameters();
     }
     
     //method that prepares and sends query
     private function send_query(){
-        $this->conn = new mysqli($servername, $username, $password, $db);
+        
+        $this->conn = new mysqli(SERVERNAME, USERNAME, PASSWORD, DB);
         //check for error
         if ($this->conn->connect_error) {
             $this->query_error = true;
+            die("Connection error");
         }
         //prepare the statement for the query
         $this->statement = $this->conn->prepare($this->sql);
         //bind the parameters using methods from the Plant_Selection class
-        $this->statement->bind_param($this->plants->parameter_types(), $this->plants->get_parameters());
+        $this->statement->bind_param($this->parameter_types, $this->parameters);
         //check for errors
-        if(!$statement->execute()) {
-            $query_error = true;
+        if(!$this->statement->execute()) {
+            $this->query_error = true;
+            die("Database query error");
+        } else {
+            
+            $this->statement->store_result();
         }
+        
         //close connection
         $this->conn->close();
-        
+    }
+    
+    //method to create query for the watering page
+    private function get_watering(){
+        $this->sql = "SELECT plant_name, watering_baby, watering_adult
+        FROM plants
+        WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
+        $this->existing_query_type = "watering";
+        $this->send_query();
+    }
+    
+    //method to print the results of the watering query on the page in the seedling section
+    public function print_watering_seedlings(){
+        if (!$this->existing_query_type == "watering" || $this->query_error) {
+            $this->get_watering();
+        }
+        $this->statement->bind_result($plant_name, $watering_baby, $watering_adult);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            echo "<h3>" . $plant_name . "</h3>";
+            echo "<div class='flex_row'> <p>" . $watering_baby . "</p></div>";
+        }
     }
 }

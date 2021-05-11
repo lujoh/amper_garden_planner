@@ -41,6 +41,8 @@
                         //create label
                         echo "<label for='" . $row['plant_id'] . "'>" . $row['plant_name'] . "</label><br>";
                     }
+                } else {
+                    echo "There has been an error in displaying the plant selection. Please try again later.";
                 }
                 ?>
                 <input type="submit" name="submit_plants" value="Submit plant selection">

@@ -33,6 +33,12 @@ include 'page_components/plant_selection_cookie.php';
                 <div>
                     <article class="plant_info watering">
                         <h2>Watering new seedlings</h2>
+                        <?php
+                        require_once '../pwd.php';
+                        $watering_text = new Content_Query();
+                        $watering_text->print_watering_seedlings();
+                        ?>
+<!--
                         <h3>Nasturtium</h3>
                         <div class="flex_row">
                             <img src="images/nasturtium_seedling.jpg" alt="Nasturtium seedlings have small round-ish leaves with a textured edge. They are light green with white striped originating from the center.">
@@ -47,6 +53,8 @@ include 'page_components/plant_selection_cookie.php';
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </p>
                         </div>
+-->
+                        
                     </article>
                     <article class="plant_info watering">
                         <h2>Watering older plants</h2>
