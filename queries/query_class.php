@@ -104,7 +104,6 @@ class Image_Query extends Base_Query {
 
 //class that is used to get content for the page
 class Content_Query extends Base_Query {
-    protected $existing_query_type;
     protected $image_object;
     protected $images;
     protected $section_variable;
@@ -115,15 +114,12 @@ class Content_Query extends Base_Query {
         SELECT plant_id, plant_name, watering_baby, watering_adult
         FROM plants
         WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
-        $this->existing_query_type = "watering";
         $this->send_query();
     }
     
     //method to print the results of the watering query on the page in both the seedling section and adult section
     public function print_watering($section){
-        if (!$this->existing_query_type == "watering" || $this->query_error) {
-            $this->get_watering();
-        }
+        $this->get_watering();
         $this->statement->bind_result($plant_id, $plant_name, $watering_baby, $watering_adult);
         $this->image_object = new Image_Query();
         $this->images = $this->image_object->get_images($section);
@@ -138,10 +134,43 @@ class Content_Query extends Base_Query {
             }
             echo "<h3>" . $plant_name . "</h3>";
             echo "<div class='flex_row'> ";
+            //insert pictures if available
             if (isset($this->images[$plant_id])){
                 echo $this->images[$plant_id];
             }
             echo "<p>" . $this->section_variable . "</p></div>";
+        }
+    }
+    
+    //method to create query for the harvest page
+    protected function get_harvest(){
+        $this->sql = "
+        SELECT plant_id, plant_name, harvest_ready, harvest_instruct
+        FROM plants
+        WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
+        $this->send_query();
+    }
+    
+    //method to print the results of the harvest query on the page
+    public function print_harvest(){
+        $this->get_harvest();
+        $this->statement->bind_result($plant_id, $plant_name, $harvest_ready, $harvest_instruct);
+        $this->image_object = new Image_Query();
+        $this->images = $this->image_object->get_images('harvest');
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            echo "<article class='plant_info harvest'>";
+            echo "<h2>" . $plant_name . "</h2><h3>Is it ready to be harvested?</h3>";
+            echo "<div class='flex_row'>";
+            //insert pictures if available
+            if (isset($this->images[$plant_id])){
+                echo $this->images[$plant_id];
+            }
+            echo "<p>" . $harvest_ready . "</p></div>";
+            echo "<h3>How to harvest?</h3>";
+            echo "<p>" . $harvest_instruct . "</p></article>";
         }
     }
 }

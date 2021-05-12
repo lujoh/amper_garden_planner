@@ -30,31 +30,14 @@ include 'page_components/plant_selection_cookie.php';
                 ?>
                 
 <!--                This is where the main content of the page starts-->
-                <article class="plant_info harvest">
-                    <h2>Nasturtium</h2>
-                    <h3>Is it ready to harvest?</h3>
-                    <div class="flex_row">
-                        <img src="images/nasturtium_harvest_1.jpg" alt="">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
-                    <h3>How to harvest?</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                </article>
-                <article class="plant_info harvest">
-                    <h2>Basil</h2>
-                    <h3>Is it ready to harvest?</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <h3>How to harvest?</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                </article>
+                <?php
+                //create new query for harvest and insert harvest text
+                $harvest_text = new Content_Query();
+                $harvest_text->print_harvest();
+                
+                
+                ?>
+                
                 
             </main>
             <?php
