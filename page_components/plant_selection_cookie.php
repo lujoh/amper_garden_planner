@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$se
         if (isset($_GET[$row['plant_id']]) && is_numeric($_GET[$row['plant_id']])){
             $your_plants[$row['plant_id']] = $row['plant_name'];
         }
+        if (empty($your_plants)){
+            $your_plants = [];
+        }
     }
     /*encode array to store it in cookie. Cookie set to expire in about 2 months*/
         $cookie_plants = json_encode($your_plants);

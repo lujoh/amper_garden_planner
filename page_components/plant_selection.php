@@ -11,7 +11,7 @@
 <!--            Here we will go over all the plants in your_plants and create a list item to show that it has been selected-->
             <ul>
                 <?php
-                if (isset($your_plants)){
+                if (isset($your_plants) && !empty($your_plants->plant_array)){
                     foreach ($your_plants->plant_array as $plant) {
                         echo "<li>" . $plant . "</li>";
                     }

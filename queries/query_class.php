@@ -10,6 +10,9 @@ class Plant_Selection {
     function __construct(){
         if (isset($_COOKIE['plants'])){
             $this->plant_array = json_decode($_COOKIE['plants'], true);
+            if (empty($this->plant_array)){
+                $this->plant_array[0] = "Please select plants to see information.";
+            }
         } else {
             die("Please select plants to see information.");
         }

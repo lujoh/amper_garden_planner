@@ -10,6 +10,7 @@
             <li><a href="watering.php">Watering Guide</a></li>
             <li><a href="care.php">Plant Care</a></li>
             <li><a href="harvest.php">Harvest Instructions</a></li>
+<!--            Add your own plants not live yet, but will be added-->
 <!--            <li><a href="">Add your own plants!</a></li>-->
         </ul>
     </nav>
