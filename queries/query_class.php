@@ -28,7 +28,7 @@ class Plant_Selection {
     //method to get string of IDs to enter into the query
     //the array values of the plant array are the plant names, but we want the IDs for the query, so we have to get the array keys first
     function get_parameters() {
-        return implode(", ", array_keys($this->plant_array));
+        return array_keys($this->plant_array);
     }
 }
 
@@ -61,7 +61,7 @@ class Base_Query {
         //prepare the statement for the query
         $this->statement = $this->conn->prepare($this->sql);
         //bind the parameters using methods from the Plant_Selection class
-        $this->statement->bind_param($this->parameter_types, $this->parameters);
+        $this->statement->bind_param($this->parameter_types, ...$this->parameters);
         //check for errors
         if(!$this->statement->execute()) {
             $this->query_error = true;
