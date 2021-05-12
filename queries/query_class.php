@@ -111,6 +111,7 @@ class Content_Query extends Base_Query {
     protected $images;
     protected $section_variable;
     protected $existing_counter;
+    protected $list_array;
     
     //method to create query for the watering page
     protected function get_watering(){
@@ -244,6 +245,47 @@ class Content_Query extends Base_Query {
         }
         foreach($this->existing_counter as $pest){
             echo $pest;
+        }
+    }
+    
+    //method to create query for the location page
+    protected function get_location(){
+        $this->sql = "
+        SELECT plant_id, plant_name, soil_requirements, shade_requirements, spacing_requirements, plant_near, plant_far
+        FROM plants
+        WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
+        $this->send_query();
+    }
+    
+    //method to print a html list from an input comma separated list
+    protected function print_list($input){
+        $this->list_array = explode(", ", $input);
+        echo "<ul>";
+        foreach ($this->list_array as $li){
+            echo "<li>" . $li . "</li>";
+        }
+        echo "</ul>";
+    }
+    
+    //method to print the results of the location query on the page
+    public function print_location(){
+        $this->get_location();
+        $this->statement->bind_result($plant_id, $plant_name, $soil_requirements, $shade_requirements, $spacing_requirements, $plant_near, $plant_far);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            echo "<article class='plant_info location'>";
+            echo "<h2>" . $plant_name . "</h2>";
+            echo "<h3>Soil Requirements:</h3><p>" . $soil_requirements . "</p>";
+            echo "<h3>Shade Requirements:</h3><p>" . $shade_requirements . "</p>";
+            echo "<h3>Spacing:</h3><p>" . $spacing_requirements . "</p>";
+            echo "<h3>Companion Planting:</h3>";
+            echo "<h4>Plant near:</h4>";
+            $this->print_list($plant_near);
+            echo "<h4>Plant away from:</h4>";
+            $this->print_list($plant_far);
+            echo "</article>";
         }
     }
 }

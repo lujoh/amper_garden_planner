@@ -31,60 +31,10 @@ include 'page_components/plant_selection_cookie.php';
                 
 <!--                This is where the main content of the page starts-->
                 <div>
-                    <article class="plant_info location">
-                        <h2>Nasturtium</h2>
-                        <h3>Soil Requirements:</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Shade Requirements:</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Spacing:</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Plant near:</h3>
-                        <ul>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                        </ul>
-                        <h3>Plant away from:</h3>
-                        <ul>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                        </ul>
-                    </article>
-                    <article class="plant_info location">
-                        <h2>Basil</h2>
-                        <h3>Soil Requirements:</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Shade Requirements:</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Spacing:</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Plant near:</h3>
-                        <ul>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                        </ul>
-                        <h3>Plant away from:</h3>
-                        <ul>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                            <li>Lorem ipsum dolor</li>
-                        </ul>
-                    </article>
+                    <?php
+                    $location_text = new Content_Query();
+                    $location_text->print_location();
+                    ?>
                 </div>
                 
             </main>
