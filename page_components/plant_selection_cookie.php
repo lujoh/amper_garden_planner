@@ -12,10 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$se
         if (isset($_GET[$row['plant_id']]) && is_numeric($_GET[$row['plant_id']])){
             $your_plants[$row['plant_id']] = $row['plant_name'];
         }
-        /*encode array to store it in cookie. Cookie set to expire in about 2 months*/
+    }
+    /*encode array to store it in cookie. Cookie set to expire in about 2 months*/
         $cookie_plants = json_encode($your_plants);
         setcookie('plants', $cookie_plants, time() + (86400 * 60), "/");
-    }
+        /*set cookie inside variable as a workaround for the first time the cookie is set before you reload*/
+        $_COOKIE['plants'] = $cookie_plants;
 }
 /*Check to see if cookie is set and decode to use the value on rest of site*/
 if (isset($_COOKIE['plants'])) {
