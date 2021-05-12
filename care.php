@@ -33,39 +33,30 @@ include 'page_components/plant_selection_cookie.php';
                 <div>
                     <article class="plant_info care">
                         <h2>Fertilization needs</h2>
-                        <h3>Nasturtium</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Basil</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
+                        <?php
+                        $fertilization_text = new Content_Query();
+                        $fertilization_text->print_care('fertilization');
+                        ?>
+
                     </article>
                     <article class="plant_info care">
                         <h2>Pruning guide</h2>
-                        <h3>Nasturtium</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Basil</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
+                        <?php
+                        $pruning_text = new Content_Query();
+                        $pruning_text->print_care('pruning');
+                        ?>
+
                     </article>
                     <article class="plant_info care">
                         <h2>Common pests and diseases</h2>
                         <p class="subheader">
                             Tell the aphids to bug off.
+                        <?php
+                        $pest_text = new Content_Query();
+                        $pest_text->print_pests();
+                        ?>
                         </p>
-                        <h3>Nasturtium</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <h3>Basil</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
+
                     </article>
                 </div>
                 

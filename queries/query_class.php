@@ -110,6 +110,7 @@ class Content_Query extends Base_Query {
     protected $image_object;
     protected $images;
     protected $section_variable;
+    protected $existing_counter;
     
     //method to create query for the watering page
     protected function get_watering(){
@@ -174,6 +175,75 @@ class Content_Query extends Base_Query {
             echo "<p>" . $harvest_ready . "</p></div>";
             echo "<h3>How to harvest?</h3>";
             echo "<p>" . $harvest_instruct . "</p></article>";
+        }
+    }
+    
+    //method to create query for the plant care page - top section with pruning guide and Fertilization needs
+    protected function get_care(){
+        $this->sql = "
+        SELECT plant_id, plant_name, fertilization, pruning
+        FROM plants
+        WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
+        $this->send_query();
+    }
+    
+    //method to print the results of the plant care query on the page
+    public function print_care($section){
+        $this->get_care();
+        $this->statement->bind_result($plant_id, $plant_name, $fertilization, $pruning);
+        $this->image_object = new Image_Query();
+        $this->images = $this->image_object->get_images($section);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            if ($section == 'fertilization'){
+                $this->section_variable = $fertilization;
+            } else {
+                $this->section_variable = $pruning;
+            }
+            echo "<h3>" . $plant_name . "</h3>";
+            echo "<div class='flex_row'>";
+            //insert pictures if available
+            if (isset($this->images[$plant_id])){
+                echo $this->images[$plant_id];
+            }
+            echo "<p>" . $this->section_variable . "</p></div>";
+        }
+    }
+    
+    //method to create query for the plant care page - bottom section with pests and diseases
+    protected function get_pests(){
+        $this->sql = "
+        SELECT plants.plant_id, plants.plant_name, pest_name, pests.pest_id, pest_description
+        FROM plants, plant_pest, pests
+        WHERE plant_pest.plant_id IN (" . $this->plants->prepare_placeholders() . ")
+        AND plants.plant_id = plant_pest.plant_id
+        AND pests.pest_id = plant_pest.pest_id
+        ORDER BY pests.pest_id;";
+        $this->send_query();
+    }
+    
+    
+    //method to print the results of the pest section queries
+    public function print_pests(){
+        $this->get_pests();
+        $this->statement->bind_result($plant_id, $plant_name, $pest_name, $pest_id, $pest_description);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            if (empty($this->existing_counter[$pest_id])){
+                //this is entered the first time that each pest occurs. 
+                //The starts with a closing paragraph tag, because it will be set within a paragraph tag on the page as a workaround to get the ending paragraph to close
+                $this->existing_counter[$pest_id]= "</p><h3>" . $pest_name . "</h3><p>" . $pest_description . "</p><h4>Plants that often have this disease or pest</h4><p>";
+
+            }
+            //this part is saved for every loop and it consists of a list of each individual plant
+            $this->existing_counter[$pest_id] .= $plant_name . "<br>";
+        }
+        foreach($this->existing_counter as $pest){
+            echo $pest;
         }
     }
 }
