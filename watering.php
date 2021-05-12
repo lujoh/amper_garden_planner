@@ -34,7 +34,6 @@ include 'page_components/plant_selection_cookie.php';
                     <article class="plant_info watering">
                         <h2>Watering new seedlings</h2>
                         <?php
-//                        require_once '../pwd.php';
                         $watering_text = new Content_Query();
                         $watering_text->print_watering('seedling');
                         ?>
@@ -43,7 +42,6 @@ include 'page_components/plant_selection_cookie.php';
                     <article class="plant_info watering">
                         <h2>Watering older plants</h2>
                         <?php
-//                        require_once '../pwd.php';
                         $watering_text = new Content_Query();
                         $watering_text->print_watering('adult');
                         ?>
