@@ -2,6 +2,7 @@
 
 /* In this file we will check to see if the plant selection has been submitted and save the selection as a cookie*/
 
+
     // Here we insert the file where the plant selection query happens
 include 'queries/plant_selection_query.php';
 require_once 'queries/query_class.php';
@@ -16,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$se
             $your_plants = [];
         }
     }
-    /*encode array to store it in cookie. Cookie set to expire in about 2 months*/
+    /*encode array to store it in cookie. Cookie set to expire in about 4 months*/
         $cookie_plants = json_encode($your_plants);
-        setcookie('plants', $cookie_plants, time() + (86400 * 60), "/");
+        setcookie('plants', $cookie_plants, time() + (86400 * 120), "/");
         /*set cookie inside variable as a workaround for the first time the cookie is set before you reload*/
         $_COOKIE['plants'] = $cookie_plants;
 }

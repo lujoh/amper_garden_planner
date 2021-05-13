@@ -1,5 +1,6 @@
 <?php
-include 'page_components/plant_selection_cookie.php';
+require_once 'page_components/plant_selection_cookie.php';
+require_once 'page_components/frost_date_cookie.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,18 +34,51 @@ include 'page_components/plant_selection_cookie.php';
                 <section class="frost_dates">
                     <p>
                         Enter the average first and last frost dates for your region to get a personalized calendar for your selected plants.
-                    </p>
-                    <form name="frost_date_selection">
+                    </p><br>
+                    <form name="frost_date_selection" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                         <div>
-                            <label for="first_frost">First frost date:</label>
-                            <input type="date" name="first_frost" id="first_frost">
+                            <span>First frost date (generally in the fall):</span><br>
+                            <label for="first_date">First frost date day</label>
+                            <input type="number" name="first_day" id="first_day" min="1" max="31" step="1" required><br>
+                            <label for="first_month">First frost date month</label>
+                            <select name="first_month" id="first_month" required>
+                                <option value='1'>January</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="last_frost">Last frost date:</label>
-                            <input type="date" name="last_frost" id="last_frost">
+                            <span>Last frost date (generally in the spring):</span><br>
+                            <label for="last_date">Last frost date day</label>
+                            <input type="number" name="last_day" id="last_day" min="1" max="31" step="1" required><br>
+                            <label for="last_month">First frost date month</label>
+                            <select name="last_month" id="last_month" required>
+                                <option value='1'>January</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
                         </div>
-                        <input type="submit" value="Submit frost dates">
+                        <input type="submit" name="submit_frost" id="submit_frost" value="Submit frost dates">
                     </form>
+                    <p><?= $error_message; ?></p>
                 </section>
                 <section class="plant_info calendar">
                     <h2>Planting calendar</h2>
