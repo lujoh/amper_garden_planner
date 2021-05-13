@@ -3,6 +3,7 @@
 /* In this file we will check to see if the plant selection has been submitted and save the selection as a cookie*/
 
 $error_message = "";
+$dates_message = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit_frost'])){
     
     //function to sanitize input
@@ -73,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit_frost'])){
     
     
     if(validate_month($first_month) && validate_month($last_month) && validate_day($first_day, $first_month) && validate_day($last_day, $last_month)){
-        $frost_dates['first'] = DateTime::createFromFormat('j-n-y', $first_day . '-' . $first_month . '-21');
-        $frost_dates['last'] = DateTime::createFromFormat('j-n-y', $last_day . '-' . $last_month . '-21');
+        $frost_dates['first'] = $first_day . '-' . $first_month . '-21';
+        $frost_dates['last'] = $last_day . '-' . $last_month . '-21';
         /*encode array to store it in cookie. Cookie set to expire in about 4 months*/
         $cookie_frost = json_encode($frost_dates);
         setcookie('frost', $cookie_frost, time() + (86400 * 120), "/");
@@ -89,7 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit_frost'])){
     
 }
 /*Check to see if cookie is set and decode to use the value on rest of site*/
-if (isset($_COOKIE['plants'])) {
-    $your_plants = new Plant_Selection();
+if (isset($_COOKIE['frost'])) {
+    $frost_dates = json_decode($_COOKIE['frost'], true);
+    $frost_dates['first'] = DateTime::createFromFormat('j-n-y', $frost_dates['first']);
+    $frost_dates['last'] = DateTime::createFromFormat('j-n-y', $frost_dates['last']);
+    $dates_message = "Based on your selected frost dates, " . $frost_dates['last']->format('M jS') . " in the spring and ". $frost_dates['first']->format('M jS') . " in the fall.";
 }
 ?>

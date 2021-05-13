@@ -82,6 +82,9 @@ require_once 'page_components/frost_date_cookie.php';
                 </section>
                 <section class="plant_info calendar">
                     <h2>Planting calendar</h2>
+                    <p class=subheader>
+                        <?= $dates_message; ?>
+                    </p>
                     <article class="plant_row">
                         <div class="plant_date">
                             May 14th - May 21st
