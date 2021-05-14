@@ -87,8 +87,12 @@ require_once 'page_components/frost_date_cookie.php';
                     </p>
                     
                     <?php
+                    if (isset($frost_dates)){
                     $calendar_text = new Content_Query();
-                    $calendar_text->print_calendar($frost_dates);
+                    $calendar_text->print_calendar($frost_dates);}
+                    else {
+                        echo "<p>Please enter frost dates to see plant information.</p>";
+                    }
                     ?>
                     
   
