@@ -38,10 +38,11 @@ require_once 'page_components/frost_date_cookie.php';
                     <form name="frost_date_selection" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                         <div>
                             <span>First frost date (generally in the fall):</span><br>
-                            <label for="first_date">First frost date day</label>
+                            <label for="first_day">First frost date day</label>
                             <input type="number" name="first_day" id="first_day" min="1" max="31" step="1" required><br>
                             <label for="first_month">First frost date month</label>
                             <select name="first_month" id="first_month" required>
+                                <option value='' disabled>Select Month</option>
                                 <option value='1'>January</option>
                                 <option value='2'>February</option>
                                 <option value='3'>March</option>
@@ -58,7 +59,7 @@ require_once 'page_components/frost_date_cookie.php';
                         </div>
                         <div>
                             <span>Last frost date (generally in the spring):</span><br>
-                            <label for="last_date">Last frost date day</label>
+                            <label for="last_day">Last frost date day</label>
                             <input type="number" name="last_day" id="last_day" min="1" max="31" step="1" required><br>
                             <label for="last_month">First frost date month</label>
                             <select name="last_month" id="last_month" required>
