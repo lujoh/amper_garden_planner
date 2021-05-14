@@ -99,7 +99,11 @@ class Image_Query extends Base_Query {
             die("Please select plants to see information.");
         }
         while($this->statement->fetch()){
-            $this->image_array[$plant_id] = "<img src='images/" . $image_url . "' alt='" . $alt . "'>";
+            if ($section == 'calendar'){
+                $this->image_array[$plant_id] = "<img src='images/" . $image_url . "' alt='" . $alt . "' class='float_img'>";
+            } else{
+                $this->image_array[$plant_id] = "<img src='images/" . $image_url . "' alt='" . $alt . "'>";
+            }
         }
         return $this->image_array;
     }
@@ -110,8 +114,9 @@ class Content_Query extends Base_Query {
     protected $image_object;
     protected $images;
     protected $section_variable;
-    protected $existing_counter;
-    protected $list_array;
+    protected $existing_counter = [];
+    protected $list_array = [];
+    protected $plant_item = [];
     
     //method to create query for the watering page
     protected function get_watering(){
@@ -286,6 +291,86 @@ class Content_Query extends Base_Query {
             echo "<h4>Plant away from:</h4>";
             $this->print_list($plant_far);
             echo "</article>";
+        }
+    }
+    
+    //method to create query for the calendar page - bottom section with pests and diseases
+    protected function get_calendar(){
+        $this->sql = "
+        SELECT plants.plant_id, plants.plant_name, planting_instructions, date_id, days_to_start, days_to_end
+        FROM plants, planting_dates
+        WHERE plants.plant_id IN (" . $this->plants->prepare_placeholders() . ")
+        AND plants.plant_id = planting_dates.plant_id;";
+        $this->send_query();
+    }
+    
+    //method to calculate dates for the calendar section
+    private function calculate_dates($frost_dates, $difference, $date_id){
+        //check if date is related to the first or last frost date
+        if ($date_id == 1){
+            //check to see if difference is positive or negative
+            if ($difference >= 0){
+                //create new Datetime object from the related frost date with the difference added
+                return new DateTime('@' . strtotime($frost_dates['last']->format('Y-m-d') . '+' . $difference . ' days'));
+            } else {
+                return new DateTime('@' . strtotime($frost_dates['last']->format('Y-m-d') . $difference . ' days'));
+            }
+        } else {
+            if ($difference >= 0){
+                return new DateTime('@' . strtotime($frost_dates['first']->format('Y-m-d') . '+' . $difference . ' days'));
+            } else {
+                return new DateTime('@' . strtotime($frost_dates['last']->format('Y-m-d') . $difference . ' days'));
+            }
+        }
+    }
+    
+    //method to sort calendar list items by date
+    function sort_dates() {
+        usort($this->existing_counter, function($a, $b) {
+            if ($a['start_date'] == $b['start_date']) return 0;
+            return ($a['start_date'] < $b['start_date'])?-1:1;
+        });
+    }
+    
+    
+    //method to print the results of the calendar section queries
+    public function print_calendar($frost_dates){
+        $this->get_calendar();
+        $this->statement->bind_result($plant_id, $plant_name, $planting_instructions, $date_id, $days_to_start, $days_to_end);
+        $this->image_object = new Image_Query();
+        $this->images = $this->image_object->get_images('calendar');
+        if (!$this->statement){
+            die("Please select plants and enter the frost dates for your region to see information.");
+        }
+        while($this->statement->fetch()){
+            //add variables to an array so they can be sorted by date before echoing
+            $this->plant_item['plant_name'] = $plant_name;
+            $this->plant_item['planting_instructions'] = $planting_instructions;
+            $this->plant_item['start_date'] = $this->calculate_dates($frost_dates, $days_to_start, $date_id);
+            $this->plant_item['end_date'] = $this->calculate_dates($frost_dates, $days_to_end, $date_id);
+            //this can be the unique id of the div for javascript purposes
+            //will be combined from the plant id and date id to make it unique
+            $this->plant_item['record_id'] = 'P' . $plant_id . 'D' . $date_id;
+            //insert pictures if available
+            if (isset($this->images[$plant_id])){
+                $this->plant_item['image'] = $this->images[$plant_id];
+            } else {
+                $this->plant_item['image'] = "";
+            }
+            echo '<br>';
+            $this->existing_counter[]= $this->plant_item;
+        }
+        //sort the dates then display them on the page
+        $this->sort_dates();
+        foreach($this->existing_counter as $item){
+            echo '<article class="plant_row"><div class="plant_date">' . $item['start_date']->format('M jS') . ' - ' . $item['end_date']->format('M jS') . '</div>';
+            echo '<div class="plant_name_calendar"><h3>' . $item['plant_name'] . '</h3>';
+            echo '<button class="hide_button" aria-expanded="false" onclick="toggle_visibility(this, \'' . $item['record_id'] . '\', \'Hide planting instructions\', \'Show planting instructions\')">Show planting instructions</button>';
+            echo '<div class="hidden" id="' . $item['record_id'] . '">';
+            if (!empty($item['image'])){
+                echo $item['image'];
+            }
+            echo "<p>" . $item['planting_instructions'] . "</p></div></div></article>";
         }
     }
 }
