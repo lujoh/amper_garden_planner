@@ -1,7 +1,7 @@
 <?php
 /* This file contains a plant selection class that can be used inside sql queries*/
 
-/* Source: https://phpdelusions.net/mysqli_examples/prepared_statement_with_in_clause */
+/* Source for how to format placeholder variables: https://phpdelusions.net/mysqli_examples/prepared_statement_with_in_clause */
 
 class Plant_Selection {
     public $plant_array;
@@ -373,4 +373,47 @@ class Content_Query extends Base_Query {
             echo "<p>" . $item['planting_instructions'] . "</p></div></div></article>";
         }
     }
+    
+    //methods to get sources to be displayed in the footer
+    protected function get_sources_plants(){
+        $this->sql = "
+        SELECT plant_name, source
+        FROM plants
+        WHERE plant_id IN (" . $this->plants->prepare_placeholders() . ");";
+        $this->send_query();
+    }
+    
+    protected function get_sources_pests(){
+        $this->sql = "
+        SELECT DISTINCT pest_name, pest_source
+        FROM  plant_pest, pests
+        WHERE plant_pest.plant_id IN (" . $this->plants->prepare_placeholders() . ")
+        AND pests.pest_id = plant_pest.pest_id;";
+        $this->send_query();
+    }
+    
+    
+    //method to print the results of the sources queries
+    public function print_sources(){
+        //sources for the plants
+        $this->get_sources_plants();
+        $this->statement->bind_result($plant_name, $source);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            echo "<li><a href='" . $source . "'>" . $plant_name . " Source</a></li>";
+        }
+        //sources for the pests
+        $this->get_sources_pests();
+        $this->statement->bind_result($pest_name, $pest_source);
+        if (!$this->statement){
+            die("Please select plants to see information.");
+        }
+        while($this->statement->fetch()){
+            echo "<li><a href='" . $pest_source . "'>" . $pest_name . " Source</a></li>";
+        }
+        
+    }
+  
 }
