@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['submit_plants']) && !$se
             $your_plants = [];
         }
     }
+    mysqli_data_seek($selection_result, 0);
     /*encode array to store it in cookie. Cookie set to expire in about 4 months*/
         $cookie_plants = json_encode($your_plants);
         setcookie('plants', $cookie_plants, time() + (86400 * 120), "/");
