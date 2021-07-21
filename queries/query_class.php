@@ -319,7 +319,7 @@ class Content_Query extends Base_Query {
             if ($difference >= 0){
                 return new DateTime('@' . strtotime($frost_dates['first']->format('Y-m-d') . '+' . $difference . ' days'));
             } else {
-                return new DateTime('@' . strtotime($frost_dates['last']->format('Y-m-d') . $difference . ' days'));
+                return new DateTime('@' . strtotime($frost_dates['first']->format('Y-m-d') . $difference . ' days'));
             }
         }
     }
