@@ -357,7 +357,6 @@ class Content_Query extends Base_Query {
             } else {
                 $this->plant_item['image'] = "";
             }
-            echo '<br>';
             $this->existing_counter[]= $this->plant_item;
         }
         //sort the dates then display them on the page
@@ -370,7 +369,7 @@ class Content_Query extends Base_Query {
             if (!empty($item['image'])){
                 echo $item['image'];
             }
-            echo "<p>" . $item['planting_instructions'] . "</p></div></div></article>";
+            echo "<br><p>" . $item['planting_instructions'] . "</p></div></div></article>";
         }
     }
     
