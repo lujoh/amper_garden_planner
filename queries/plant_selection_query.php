@@ -1,6 +1,6 @@
 <?php
 //this file starts an sql query for the plant selection section and saves the result in a variable to be used in the plant selection area
-include '../pwd.php';
+require_once '../pwd.php';
 $selection_error = false;
 $conn = new mysqli(SERVERNAME, USERNAME, PASSWORD, DB);
 
