@@ -9,8 +9,11 @@ class Frost_API_Call {
     private $error_text;
     private $location_lat;
     private $location_lon;
+    private $testing; 
 
-    public function get_frost_dates($zip_code){
+    //set testing to true in order to log results
+    public function get_frost_dates($zip_code, $testing = false){
+        $this->testing = $testing;
         $location_url = $this->create_zip_code_url($zip_code);
         if (!$location_url){
             $this->error_text = "Please enter a 5 digit US zip code or enter your frost dates in the dates section.";
@@ -46,6 +49,9 @@ class Frost_API_Call {
     }
 
     public function get_error_message(){
+        if ($this->testing){
+            file_put_contents("../queries/query_logs/frost_query_log.txt", $this->error_text, FILE_APPEND);
+        }
         return $this->error_text;
     }
 
@@ -91,6 +97,10 @@ class Frost_API_Call {
         curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($request);
         curl_close($request);
+        if ($this->testing){
+            $logtext = "Request URL: " . $url . "\r\n" . $response . "\r\n";
+            file_put_contents("../queries/query_logs/frost_query_log.txt", $logtext, FILE_APPEND);
+        }
         if (!empty($response)){
             return json_decode($response, true);
         } else {
@@ -126,13 +136,17 @@ class Frost_API_Call {
                 * cos(deg2rad($station_lat))
                 * pow(sin(deg2rad($station_lon-$this->location_lon)/2), 2)
             )); //distance in kilometers
+            if ($this->testing){
+                $logtext = "Station id: " . $station["id"] . " Calculated distance: " . $distance . "km\r\n";
+                file_put_contents("../queries/query_logs/frost_query_log.txt", $logtext, FILE_APPEND);
+            }
             //check which station is the closest
             if (empty($closest_station) || $distance < $closest_distance){
                 $closest_station = $station["id"];
                 $closest_distance = $distance;
             }
-            return $closest_station;
         }
+        return $closest_station;
     }
 
     private function calculate_dates($results){
@@ -151,9 +165,13 @@ class Frost_API_Call {
         if (empty($dates[self::FIRST]) || empty($dates[self::LAST])){
             $this->error_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
             return false;
-        }
+        }     
         $output['first'] = date_format($dates[self::FIRST], 'j-n-y');
         $output['last'] = date_format($dates[self::LAST], 'j-n-y');
+        if ($this->testing){
+            $logtext = json_encode($output) . "\r\n";
+            file_put_contents("../queries/query_logs/frost_query_log.txt", $logtext, FILE_APPEND);
+        }
         return $output;
     }
 }
