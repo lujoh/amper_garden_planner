@@ -14,6 +14,20 @@ Pages are:
 * Plant Care
 * Harvest Guide
 
+## New Additions
+
+It is not possible to calculate the frost dates and generate a planting calendar by entering a US Zip code instead of entering the frost dates directly. This feature will use information from OpenStreetMap via the Nominatim API and NOAA via the Climate Data Online API v2 (view Sources below) in order to calculate the nearest weather station for a given zip code and get the relevant frost dates. The dates used here are the dates of 50% probability of 32 $^\circ$ F occurring for the last time in the spring or the first time in the fall. For some zip codes where frost data may not be available or areas outside of the US, there is still the option of entering frost dates directly. The planting calendar is geared towards regions where the planting season is dictated by frost, and is not applicable elsewhere.
+
+### Sources and Tools
+
+* Anthony Arguez, Imke Durre, Scott Applequist, Mike Squires, Russell Vose, Xungang Yin, and Rocky Bilotta (2010). NOAA's U.S. Climate Normals (1981-2010). [Annual elements/values]. NOAA National Centers for Environmental Information. [DOI:10.7289/V5PN93JP](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00821/html)
+* [NOAA Climate Data Online API v2](https://www.ncdc.noaa.gov/cdo-web/webservices/v2#gettingStarted)
+* [OpenStreetMap](https://www.openstreetmap.org/copyright) Contributors
+* [Nominatim](https://nominatim.org/)
+
+
+
+
 ## Reasoning
 
 When I started getting into gardening I spent a lot of time looking at information about different plants on various websites. The websites I found had the information I needed, but the way they were organized, they usually had all available information for a single plant on one page. This meant that while I was gardening I would have to access a bunch of different pages to get the same type of information for each of the plants I was planting and on each I would have to scroll down to get to the piece of information that was relevant to what I was doing at that moment. This was inconvenient, especially since I was usually trying to quickly look something up on my phone while I was outside in the garden with bad lighting and poor internet.
@@ -24,4 +38,4 @@ The other thing I wanted to do for my page is to give the information about all 
 
 ## Background
 
-I made this class for my Intermediate Interactive Design class as part of the Informatics program. One of the main focuses for me during this project was using MySQL to store all of the information about the plants and to use it to populate the page content. This was my first website using SQL so I wanted to make it a major part of the website. It was a fun project for me to work on.
+I made this class for my Intermediate Interactive Design class as part of the Informatics program. One of the main focuses for me during this project was using MySQL to store all of the information about the plants and to use it to populate the page content. This was my first website using SQL so I wanted to make it a major part of the website. Since the class ended I have been making additions and changes to the website such as the functionality to calculate frost dates by zip code.
