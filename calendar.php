@@ -35,7 +35,7 @@ require_once 'page_components/frost_date_cookie.php';
                     <div>
                         <p>This calendar is based on areas that have an average first and last frost date every year. It is not meant for areas that are too warm to have a regular frost or too cold to have a long enough outdoor growing season.</p>
                         <p>Enter the US Zip code of your location or enter your dates directly below.</p>
-                        <p class="subheader">The zip code function uses location data from <a href="openstreetmap.org/copyright">OpenStreetMap</a> and climate data from <a href="https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00821/html">NOAA</a>.</p>
+                        <p class="subheader">The zip code function uses location data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> and climate data from <a href="https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00821/html">NOAA</a>.</p>
                         <br>
                         <form name="zip_code_entry" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                             <div>
