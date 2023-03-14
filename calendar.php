@@ -45,6 +45,7 @@ require_once 'page_components/frost_date_cookie.php';
                             </div>
                         </form>
                     </div>
+                    <br>
                     <div>
                         <p>
                             Enter the average first and last frost dates for your region to get a personalized calendar for your selected plants.
@@ -94,7 +95,7 @@ require_once 'page_components/frost_date_cookie.php';
                             <input type="submit" name="submit_frost" id="submit_frost" value="Submit frost dates">
                         </form>
                     </div>
-                    <p class="subheader"><?= $error_message; ?></p>
+                    <p class="plant_selection"><?= $error_message; ?></p>
                 </section>
                 <section class="plant_info calendar">
                     <h2>Planting calendar</h2>

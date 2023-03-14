@@ -100,9 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit_zip'])){
         setcookie('frost', $cookie_frost, time() + (86400 * 120), "/");
         /*set cookie inside variable as a workaround for the first time the cookie is set before you reload*/
         $_COOKIE['frost'] = $cookie_frost;
-    } else {
-        $error_message = $frost_request->get_error_message();
     }
+    $error_message = $frost_request->get_result_message();
 }
 
 /*Check to see if cookie is set and decode to use the value on rest of site*/

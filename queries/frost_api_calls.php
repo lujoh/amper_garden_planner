@@ -6,24 +6,25 @@ class Frost_API_Call {
     const LOCATION_URL = "https://www.ncei.noaa.gov/cdo-web/api/v2/locations?datasetid=NORMAL_ANN&locationcategoryid=ZIP";
     const FIRST = "ANN-TMIN-PRBFST-T32FP50";
     const LAST = "ANN-TMIN-PRBLST-T32FP50";
-    private $error_text;
+    private $result_text;
     private $location_lat;
     private $location_lon;
     private $testing; 
+    private $closest_station;
 
     //set testing to true in order to log results
     public function get_frost_dates($zip_code, $testing = false){
         $this->testing = $testing;
         $location_url = $this->create_zip_code_url($zip_code);
         if (!$location_url){
-            $this->error_text = "Please enter a 5 digit US zip code or enter your frost dates in the dates section.";
+            $this->result_text = "Please enter a 5 digit US zip code or enter your frost dates in the dates section.";
             return false;
         }
         $location_result = $this->send_api_call($location_url, "Nominatim");
         //echo "<br>";
         //var_dump($location_result);
         if (!$location_result){
-            $this->error_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
+            $this->result_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
             return false;
         }
         $bounding_box = $this->process_location_result($location_result);
@@ -36,7 +37,7 @@ class Frost_API_Call {
         //echo "<br><br>";
         //var_dump($station_result);
         if (!$station_result){
-            $this->error_text = "There are no available weather stations nearby. Please enter your frost dates in the bottom form.";
+            $this->result_text = "There are no available weather stations nearby. Please enter your frost dates in the bottom form.";
             return false;
         }
         $station_id = $this->calculate_nearest_station($station_result);
@@ -48,11 +49,11 @@ class Frost_API_Call {
         return $output;
     }
 
-    public function get_error_message(){
+    public function get_result_message(){
         if ($this->testing){
-            file_put_contents("../queries/query_logs/frost_query_log.txt", $this->error_text, FILE_APPEND);
+            file_put_contents("../queries/query_logs/frost_query_log.txt", $this->result_text, FILE_APPEND);
         }
-        return $this->error_text;
+        return $this->result_text;
     }
 
     //create the URL to get a bounding box and lat/long for a given zip code from Nominatim API
@@ -119,7 +120,7 @@ class Frost_API_Call {
     // process station results from the first NOAA response and calculate nearest station
     private function calculate_nearest_station($result){
         if ($result["metadata"]["resultset"]["count"] <= 0){
-            $this->error_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
+            $this->result_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
             return false;
         }
         $closest_station = "";
@@ -144,6 +145,7 @@ class Frost_API_Call {
             if (empty($closest_station) || $distance < $closest_distance){
                 $closest_station = $station["id"];
                 $closest_distance = $distance;
+                $this->closest_station = $station["name"];
             }
         }
         return $closest_station;
@@ -158,12 +160,12 @@ class Frost_API_Call {
                 date_add($date, $interval);
                 $dates[$result['datatype']] = $date;
             } else {
-                $this->error_text = "Valid frost dates couldn't be found for your zip code. Your region might be too hot or too cold to have regular frost dates. If this is a mistake please enter your frost dates in the second form. Otherwise you might need to look elsewhere for planting date information.";
+                $this->result_text = "Valid frost dates couldn't be found for your zip code. Your region might be too hot or too cold to have regular frost dates. If this is a mistake please enter your frost dates in the second form. Otherwise you might need to look elsewhere for planting date information.";
                 return false;
             }
         }
         if (empty($dates[self::FIRST]) || empty($dates[self::LAST])){
-            $this->error_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
+            $this->result_text = "There was an error processing your zip code. Please enter your frost dates in the bottom form.";
             return false;
         }     
         $output['first'] = date_format($dates[self::FIRST], 'j-n-y');
@@ -172,6 +174,7 @@ class Frost_API_Call {
             $logtext = json_encode($output) . "\r\n";
             file_put_contents("../queries/query_logs/frost_query_log.txt", $logtext, FILE_APPEND);
         }
+        $this->result_text = "Your submission was successful. Your nearest weather station is: " . $this->closest_station . " and the frost dates for your area are " . DateTime::createFromFormat('j-n-y', $output['last'])->format('M jS') . " and " . DateTime::createFromFormat('j-n-y', $output['first'])->format('M jS') . ".";
         return $output;
     }
 }
