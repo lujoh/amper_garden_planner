@@ -2,7 +2,8 @@
 /** Class sends API calls to retrieve frost dates for a given zip code */
 require_once '../pwd.php';
 class Frost_API_Call {
-    const HEADERS = ["Token: " . NOAA_TOKEN];
+    const HEADERS_NOAA = ["Token: " . NOAA_TOKEN, "Cache-Control: public, max-age=31536000"];
+    const HEADERS_DEFAULT= ["Cache-Control: public, max-age=31536000"];
     const LOCATION_URL = "https://www.ncei.noaa.gov/cdo-web/api/v2/locations?datasetid=NORMAL_ANN&locationcategoryid=ZIP";
     const FIRST = "ANN-TMIN-PRBFST-T32FP50";
     const LAST = "ANN-TMIN-PRBLST-T32FP50";
@@ -45,6 +46,10 @@ class Frost_API_Call {
         $frost_dates_result = $this->send_api_call($frost_dates_url, "NOAA");
         //echo "<br><br>";
         //var_dump($frost_dates_result);
+        if (!$frost_dates_result){
+            $this->result_text = "There are no available weather stations nearby. Please enter your frost dates in the bottom form.";
+            return false;
+        }
         $output = $this->calculate_dates($frost_dates_result["results"]);
         return $output;
     }
@@ -91,9 +96,10 @@ class Frost_API_Call {
     private function send_api_call($url, $api){
         $request = curl_init($url);
         if ($api == "NOAA"){
-            curl_setopt($request, CURLOPT_HTTPHEADER, self::HEADERS);
+            curl_setopt($request, CURLOPT_HTTPHEADER, self::HEADERS_NOAA);
         } else if ($api == "Nominatim"){
             curl_setopt( $request, CURLOPT_USERAGENT, USERAGENT );
+            curl_setopt($request, CURLOPT_HTTPHEADER, self::HEADERS_DEFAULT);
         }
         curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($request);
@@ -101,7 +107,7 @@ class Frost_API_Call {
         if ($this->testing){
             $logtext = "Request URL: " . $url . "\r\n" . $response . "\r\n";
             file_put_contents("../queries/query_logs/frost_query_log.txt", $logtext, FILE_APPEND);
-        }
+        }     
         if (!empty($response)){
             return json_decode($response, true);
         } else {
