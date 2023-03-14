@@ -94,9 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit_frost'])){
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit_zip'])){
     $zip_code = sanitize_input($_POST['zip_code']);
     $frost_request = new Frost_API_Call();
-    $frost_dates = $frost_request->get_frost_dates($zip_code);
-    if (!empty($frost_dates)){
-        $cookie_frost = json_encode($frost_dates);
+    $frost_dates_result = $frost_request->get_frost_dates($zip_code);
+    if (!empty($frost_dates_result)){
+        $cookie_frost = json_encode($frost_dates_result);
         setcookie('frost', $cookie_frost, time() + (86400 * 120), "/");
         /*set cookie inside variable as a workaround for the first time the cookie is set before you reload*/
         $_COOKIE['frost'] = $cookie_frost;
