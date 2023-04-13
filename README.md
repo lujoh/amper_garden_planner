@@ -16,7 +16,7 @@ Pages are:
 
 ## New Additions
 
-It is not possible to calculate the frost dates and generate a planting calendar by entering a US Zip code instead of entering the frost dates directly. This feature will use information from OpenStreetMap via the Nominatim API and NOAA via the Climate Data Online API v2 (view Sources below) in order to calculate the nearest weather station for a given zip code and get the relevant frost dates. The dates used here are the dates of 50% probability of 32 $^\circ$ F occurring for the last time in the spring or the first time in the fall. For some zip codes where frost data may not be available or areas outside of the US, there is still the option of entering frost dates directly. The planting calendar is geared towards regions where the planting season is dictated by frost, and is not applicable elsewhere.
+It is now possible to calculate the frost dates and generate a planting calendar by entering a US Zip code instead of entering the frost dates directly. This feature will use information from OpenStreetMap via the Nominatim API and NOAA via the Climate Data Online API v2 (view Sources below) in order to calculate the nearest weather station for a given zip code and get the relevant frost dates. The dates used here are the dates of 50% probability of 32 $^\circ$ F occurring for the last time in the spring or the first time in the fall. For some zip codes where frost data may not be available or areas outside of the US, there is still the option of entering frost dates directly. The planting calendar is geared towards regions where the planting season is dictated by frost, and is not applicable elsewhere.
 
 ### Sources and Tools
 
