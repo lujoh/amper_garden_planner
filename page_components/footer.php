@@ -1,9 +1,9 @@
 <footer>
     <p>
-        Website by <a href="https://www.linkedin.com/in/lucia-e-johnson">Lucia Johnson</a>.
+        Website by <a target="_blank" href="https://www.linkedin.com/in/lucia-e-johnson">Lucia Johnson</a>.
     </p>
     <p>
-        View the source code of this website on <a href="https://github.com/lujoh/amper_garden_planner">GitHub</a>.
+        View the source code of this website on <a target="_blank" href="https://github.com/lujoh/amper_garden_planner">GitHub</a>.
     </p>
     <h4>Sources:</h4>
     <p>

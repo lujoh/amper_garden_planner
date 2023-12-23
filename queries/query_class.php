@@ -401,7 +401,7 @@ class Content_Query extends Base_Query {
             die("Please select plants to see information.");
         }
         while($this->statement->fetch()){
-            echo "<li><a href='" . $source . "'>" . $plant_name . " Source</a></li>";
+            echo "<li><a target='_blank' href='" . $source . "'>" . $plant_name . " Source</a></li>";
         }
         //sources for the pests
         $this->get_sources_pests();
@@ -410,7 +410,7 @@ class Content_Query extends Base_Query {
             die("Please select plants to see information.");
         }
         while($this->statement->fetch()){
-            echo "<li><a href='" . $pest_source . "'>" . $pest_name . " Source</a></li>";
+            echo "<li><a target='_blank' href='" . $pest_source . "'>" . $pest_name . " Source</a></li>";
         }
         
     }
