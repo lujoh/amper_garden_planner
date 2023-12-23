@@ -2,7 +2,7 @@
 
 ## Live Website
 
-[View the live website here](https://amper-garden-planner.000webhostapp.com/care.php)
+[View the live website here](https://amper-garden-planner.azurewebsites.net/)
 
 ## About
 
